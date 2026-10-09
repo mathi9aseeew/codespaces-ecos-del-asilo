@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+    <script>
+  window.onerror = function(msg, url, line) {
+     alert("Atención, hay un error en la línea " + line + ":\n" + msg);
+  };
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecos del Asilo: El Descenso - 3D Horror</title>
+    <!-- Hoja de Estilos Personalizada -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Librería Three.js desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Efecto de Viñeta Oscura -->
+        <div id="vignette"></div>
+
+        <!-- Interfaz en Pantalla (HUD) -->
+        <div id="hud">
+            <div class="hud-top">
+                <div class="status-box">
+                    <div>LINTERNA <span id="battery-val">100%</span></div>
+                    <div class="bar-container"><div id="battery-bar" class="bar-fill"></div></div>
+                    
+                    <div style="margin-top: 8px;">ENERGÍA</div>
+                    <div class="bar-container"><div id="stamina-bar" class="bar-fill"></div></div>
+
+                    <div style="margin-top: 8px;">CORDURA</div>
+                    <div class="bar-container"><div id="sanity-bar" class="bar-fill"></div></div>
+                </div>
+
+                <div class="status-box" style="text-align: right;">
+                    <div class="floor-display" id="floor-txt">PISO 1</div>
+                    <div id="objective">Objetivo: Encuentra las 3 Tarjetas de Seguridad en los pisos para abrir la Salida Principal.</div>
+                </div>
+            </div>
+
+            <!-- Mirilla y Prompts -->
+            <div id="crosshair"></div>
+            <div id="interaction-prompt">Presiona [E] para Interactuar</div>
+        </div>
+
+        <!-- Modal de Lectura de Notas -->
+        <div id="note-modal">
+            <div id="note-title">DOCUMENTO CLASIFICADO</div>
+            <div id="note-text">Texto de la nota...</div>
+            <div class="close-note-hint">Presiona [E] o [ESC] para cerrar</div>
+        </div>
+
+        <!-- Pantalla de Inicio -->
+        <div id="start-screen" class="screen-overlay">
+            <h1>ECOS DEL ASILO</h1>
+            <h2>EL DESCENSO EN LA OSCURIDAD</h2>
+            <button class="btn" id="start-btn">ENTRAR AL ASILO</button>
+
+            <div class="controls-info">
+                <strong>CONTROLES:</strong><br>
+                • <strong>W, A, S, D</strong>: Moverse<br>
+                • <strong>Ratón</strong>: Mirar alrededor<br>
+                • <strong>E</strong>: Interactuar (Puertas, Ascensor, Notas, Tarjetas)<br>
+                • <strong>F</strong>: Encender / Apagar Linterna<br>
+                • <strong>SHIFT</strong>: Correr (Gasta Energía)<br>
+                • <strong>CTRL / C</strong>: Agacharse<br>
+                • <strong>ESC</strong>: Pausa
+            </div>
+        </div>
+
+        <!-- Pantalla de Pausa -->
+        <div id="pause-screen" class="screen-overlay" style="display: none;">
+            <h1>JUEGO EN PAUSA</h1>
+            <button class="btn" id="resume-btn">CONTINUAR</button>
+        </div>
+
+        <!-- Pantalla Game Over -->
+        <div id="gameover-screen" class="screen-overlay" style="display: none;">
+            <h1 style="font-size: 56px;">HAS MUERTO</h1>
+            <p style="color: #aaa; margin-bottom: 20px;">El Ente te ha atrapado en la oscuridad del asilo...</p>
+            <button class="btn" id="restart-btn">REINTENTAR</button>
+        </div>
+
+        <!-- Pantalla de Victoria -->
+        <div id="win-screen" class="screen-overlay" style="display: none;">
+            <h1 style="color: #33ff33; text-shadow: 0 0 15px rgba(51, 255, 51, 0.8);">LOGRASTE ESCAPAR</h1>
+            <p style="color: #aaa; margin-bottom: 20px;">Abriste las puertas del primer piso y escapaste con vida.</p>
+            <button class="btn" id="win-restart-btn">JUGAR DE NUEVO</button>
+        </div>
+    </div>
+
+    <!-- Script de Lógica del Juego -->
+    <script src="script.js"></script>
+</body>
+</html>
